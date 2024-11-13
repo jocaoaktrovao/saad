@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="buscabinaria.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script>
+        function executarBuscaLinear() {
+            const lista = [10, 20, 30, 40, 50];
+            const item = parseInt(prompt("Digite o item que deseja buscar na lista:"));
+    
+            function busca_linear(lista, item) {
+                for (let i = 0; i < lista.length; i++) {
+                    if (lista[i] === item) {
+                        return i;  // Retorna o índice do item encontrado
+                    }
+                }
+                return -1;  // Retorna -1 se o item não for encontrado
+            }
+    
+            const resultado = busca_linear(lista, item);
+            const saida = resultado !== -1 
+                ? `Item encontrado no índice: ${resultado}` 
+                : "Item não encontrado na lista.";
+    
+            document.getElementById("saidaCodigoBusca").textContent = saida;
+        }
+    </script>
+    
+    </head>
+    <body>
+        <h1><br>ALGORITMOS DE BUSCA</h1>
+        <h2>2. BUSCA BINÁRIA</h2>
+        <div class="textooo">
+            A busca binária é muito mais eficiente, mas exige que a lista esteja previamente ordenada. O algoritmo funciona dividindo a lista em duas partes repetidamente. Primeiro, ele compara o item do meio da lista com o valor que você está procurando. Se o valor for menor, ele descarta a metade superior da lista; se for maior, descarta a metade inferior. Esse processo continua até que o item seja encontrado ou até que não haja mais elementos a serem verificados. A busca binária é muito rápida, mas só funciona em listas ordenadas.
+        </div>
+        
+        <h1>EXEMPLO DE CÓDIGO</h1>
+        <textarea class="code-box" readonly>
+            package main
+    
+            import "fmt"
+    
+            func buscaBinaria(lista []int, item int) int {
+                inicio := 0
+                fim := len(lista) - 1
+    
+                for inicio <= fim {
+                    meio := (inicio + fim) / 2
+                    if lista[meio] == item {
+                        return meio
+                    } else if lista[meio] < item {
+                        inicio = meio + 1
+                    } else {
+                        fim = meio - 1
+                    }
+                }
+    
+                return -1
+            }
+    
+            func main() {
+                lista := []int{10, 20, 30, 40, 50}
+                item := 30
+                resultado := buscaBinaria(lista, item)
+    
+                if resultado != -1 {
+                    fmt.Printf("Item encontrado no índice: %d\n", resultado)
+                } else {
+                    fmt.Println("Item não encontrado na lista.")
+                }
+            }
+        </textarea>
+        <br>
+        <button class="btn-executar" onclick="executarBuscaBinaria()">Executar Código</button>
+        <div class="output" id="saidaCodigoBusca">Saída do código aparecerá aqui...</div>
+    
+        <div class="textooo">
+            <h1>Explicação</h1>
+            <p>Função <code>buscaBinaria(lista []int, item int) int</code>:</p>
+            <p>Objetivo: Realizar uma busca binária em uma lista ordenada. Retorna o índice do item, se encontrado; caso contrário, retorna -1.</p>
+    
+            <p>Processo:</p>
+            <ul>
+                <li>O algoritmo divide a lista ao meio, compara o valor do meio com o item que está sendo procurado.</li>
+                <li>Se o item for menor que o valor do meio, a busca continua na metade inferior da lista.</li>
+                <li>Se o item for maior, a busca continua na metade superior.</li>
+                <li>Esse processo é repetido até que o item seja encontrado ou a lista não tenha mais elementos para verificar.</li>
+            </ul>
+    
+            <p>Entrada do Usuário:</p>
+            <p>O exemplo usa uma lista ordenada <code>[10, 20, 30, 40, 50]</code> e busca o número <code>30</code>.</p>
+    
+            <p>Geração e Exibição do Resultado:</p>
+            <p>O índice do item, se encontrado, é exibido ao usuário. Caso contrário, a mensagem "Item não encontrado na lista." é exibida.</p>
+        </div>
+
+
+
+        <div class="botao-proximo">
+            <a href="buscaintergo.html" class="proximo">PROXIMO</a></a>
+        </div>
+        <div class="botao-voltar">
+            <a href="modulo3go.html" class="voltar">VOLTAR</a>
+        </div>
+        <footer>
+        <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+        </footer>
+
+</body>
+</html>    

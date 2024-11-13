@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="primo.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script>
+        function executarCodigoPrimo() {
+            const inputN = prompt("Digite um número para verificar se é primo:");
+    
+            // Função para verificar se o número é primo
+            function ehPrimo(n) {
+                if (n <= 1) {
+                    return false;
+                }
+                for (let i = 2; i <= Math.sqrt(n); i++) {
+                    if (n % i === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+    
+            const n = parseInt(inputN);
+            if (isNaN(n)) {
+                document.getElementById("saidaCodigoPrimo").textContent = "Por favor, insira um número válido.";
+            } else {
+                const resultado = ehPrimo(n);
+                if (resultado) {
+                    document.getElementById("saidaCodigoPrimo").textContent = `${n} é um número primo.`;
+                } else {
+                    document.getElementById("saidaCodigoPrimo").textContent = `${n} não é um número primo.`;
+                }
+            }
+        }
+    </script>
+    </head>
+<body>
+    <h1><br>PRIMO</h1>
+<h2>VERIFICAR SE UM NÚMERO É PRIMO COM ESCOLHA DO USUÁRIO</h2>
+<h1>CÓDIGO:</h1>
+<textarea class="code-box" readonly>
+    package main
+
+    import (
+        "fmt"
+        "math"
+    )
+
+    func ehPrimo(n int) bool {
+        if n <= 1 {
+            return false
+        }
+        for i := 2; i <= int(math.Sqrt(float64(n))); i++ {
+            if n % i == 0 {
+                return false
+            }
+        }
+        return true
+    }
+
+    func main() {
+        var n int
+        fmt.Print("Digite um número para verificar se é primo: ")
+        fmt.Scan(&n)
+        
+        if ehPrimo(n) {
+            fmt.Printf("%d é um número primo.\n", n)
+        } else {
+            fmt.Printf("%d não é um número primo.\n", n)
+        }
+    }
+</textarea>
+<br>
+<button class="btn-executar" onclick="executarCodigoPrimo()">Executar Código</button>
+<div class="output" id="saidaCodigoPrimo">Saída do código aparecerá aqui...</div>
+
+<h1>Explicação</h1>
+<div class="textooo">
+    Objetivo: Verificar se um número n é primo.
+    
+    <br><br>Processo:
+    <br>Se n for menor ou igual a 1, não é primo.
+    <br>O loop percorre todos os números de 2 até a raiz quadrada de n. Se n for divisível por qualquer desses números, ele não é primo.
+    
+    <br><br>Entrada do Usuário:
+    <br>O usuário insere um número para verificar se é primo.
+    
+    <br><br>Verificação e Exibição do Resultado:
+    <br>O programa verifica se o número é primo e exibe o resultado.
+</div>
+<div class="botao-proximo">
+    <a href="vetoresgo.html" class="proximo">PRÓXIMO</a></a>
+</div>
+<div class="botao-voltar">
+    <a href="modulo2go.html" class="voltar">VOLTAR</a>
+</div>
+    
+<footer>
+        <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>

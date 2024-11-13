@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="modulo3.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+     <script>
+        function executarBuscaLinear() {
+            const lista = [10, 20, 30, 40, 50];
+            const item = parseInt(prompt("Digite o item que deseja buscar na lista:"));
+    
+            function busca_linear(lista, item) {
+                for (let i = 0; i < lista.length; i++) {
+                    if (lista[i] === item) {
+                        return i;  // Retorna o índice do item encontrado
+                    }
+                }
+                return -1;  // Retorna -1 se o item não for encontrado
+            }
+    
+            const resultado = busca_linear(lista, item);
+            const saida = resultado !== -1 
+                ? `Item encontrado no índice: ${resultado}` 
+                : "Item não encontrado na lista.";
+    
+            document.getElementById("saidaCodigoBusca").textContent = saida;
+        }
+        </script>
+        </head>
+        <body>
+            <h1><br>MÓDULO 3!!</h1>
+    <div class="textooo">
+        Neste módulo, mergulharemos em conceitos que são o coração da ciência da computação: algoritmos de busca e ordenação. Saber como organizar dados e encontrá-los rapidamente é uma habilidade que diferencia um programador eficiente de um iniciante. Começaremos com técnicas de ordenação básicas, como Bubble Sort e Insertion Sort, e avançaremos para algoritmos mais sofisticados, como Quick Sort e Merge Sort. Em seguida, abordaremos algoritmos de busca, desde a simples mas eficaz busca linear até a poderosa busca binária. Este módulo não só aprimorará suas habilidades de programação, mas também o ajudará a entender como otimizar seu código para melhor desempenho.
+    </div> 
+
+    <h1><br>ALGORITMOS DE BUSCA</h1>
+    <h2>1. BUSCA LINEAR</h2>
+    <div class="textooo">
+        A busca linear é o método mais simples de encontrar um item em uma lista. Basicamente, o algoritmo percorre cada elemento da lista, do início ao fim, comparando cada elemento com o valor que você está procurando. Se ele encontrar o item, retorna o índice. Caso contrário, retorna -1, indicando que o item não está na lista. É uma abordagem simples, mas pode ser lenta em listas muito grandes.
+    </div>
+
+    <h1>EXEMPLO DE CÓDIGO</h1>
+    <textarea class="code-box" readonly>
+        package main
+
+        import "fmt"
+
+        func buscaLinear(lista []int, item int) int {
+            for i, v := range lista {
+                if v == item {
+                    return i
+                }
+            }
+            return -1
+        }
+
+        func main() {
+            lista := []int{10, 20, 30, 40, 50}
+            item := 30
+            resultado := buscaLinear(lista, item)
+            
+            if resultado != -1 {
+                fmt.Printf("Item encontrado no índice: %d\n", resultado)
+            } else {
+                fmt.Println("Item não encontrado na lista.")
+            }
+        }
+    </textarea>
+    <br>
+    <button class="btn-executar" onclick="executarBuscaLinear()">Executar Código</button>
+    <div class="output" id="saidaCodigoBusca">Saída do código aparecerá aqui...</div>
+
+    <div class="textooo">
+        <h1>Explicação</h1>
+        <p>Função <code>buscaLinear(lista []int, item int) int</code>:</p>
+        <p>Objetivo: Encontra o índice de um item em uma lista. Se o item não for encontrado, retorna -1.</p>
+
+        <p>Processo:</p>
+        <ul>
+            <li>A função percorre cada elemento da lista e verifica se ele é igual ao item procurado.</li>
+            <li>Se o item for encontrado, a função retorna seu índice. Se não, retorna -1.</li>
+        </ul>
+
+        <p>Entrada do Usuário:</p>
+        <p>No exemplo, a lista <code>[10, 20, 30, 40, 50]</code> e o item <code>30</code> são definidos diretamente no código.</p>
+
+        <p>Geração e Exibição do Resultado:</p>
+        <p>O índice do item, se encontrado, é exibido ao usuário. Caso contrário, a mensagem "Item não encontrado na lista." é exibida.</p>
+    </div>
+            <div class="botao-proximo">
+                <a href="buscabinariago.html" class="proximo">PROXIMO</a></a>
+            </div>
+    <footer>
+        <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+    </footer>
+        </body>
+</html>

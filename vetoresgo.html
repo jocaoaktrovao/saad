@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="vetores.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script>
+        function executarCodigoVetor() {
+            const tamanho = parseInt(prompt("Digite o tamanho do vetor:"));
+            if (isNaN(tamanho) || tamanho <= 0) {
+                document.getElementById("saidaCodigoVetor").textContent = "Por favor, insira um tamanho válido.";
+                return;
+            }
+    
+            let vetor = [];
+            for (let i = 0; i < tamanho; i++) {
+                const elemento = parseInt(prompt(`Digite o elemento ${i + 1} do vetor:`));
+                if (isNaN(elemento)) {
+                    document.getElementById("saidaCodigoVetor").textContent = "Elemento inválido inserido. Tente novamente.";
+                    return;
+                }
+                vetor.push(elemento);
+            }
+    
+            // Exibir o vetor gerado
+            const soma = vetor.reduce((acc, curr) => acc + curr, 0);
+            document.getElementById("saidaCodigoVetor").textContent = `Vetor gerado: ${vetor}. Soma dos elementos: ${soma}`;
+        }
+    </script>
+</head>
+<body>
+    <h1><br>VETORES</h1>
+<h2>OPERAÇÕES COM VETORES (LISTAS) COM EXIBIÇÃO DO VETOR</h2>
+<h1><br>Código</h1>
+<textarea class="code-box" readonly>
+    package main
+
+    import "fmt"
+
+    func main() {
+        var tamanho int
+        fmt.Print("Digite o tamanho do vetor: ")
+        fmt.Scan(&tamanho)
+
+        vetor := make([]int, tamanho)
+        for i := 0; i < tamanho; i++ {
+            fmt.Printf("Digite o elemento %d do vetor: ", i+1)
+            fmt.Scan(&vetor[i])
+        }
+
+        // Exibe o vetor gerado
+        fmt.Printf("Vetor gerado: %v\n", vetor)
+
+        // Calcula a soma dos elementos do vetor
+        soma := 0
+        for _, valor := range vetor {
+            soma += valor
+        }
+        fmt.Printf("A soma dos elementos do vetor é %d\n", soma)
+    }
+</textarea>
+<br>
+<button class="btn-executar" onclick="executarCodigoVetor()">Executar Código</button>
+<div class="output" id="saidaCodigoVetor">Saída do código aparecerá aqui...</div>
+
+<h1>EXPLICAÇÃO</h1>
+<div class="textooo">
+    <br><br>Entrada do Tamanho e Elementos do Vetor: O usuário define o tamanho do vetor e insere os elementos um por um.
+
+    <br><br>Exibição do Vetor: O vetor completo é exibido após a inserção dos elementos.
+
+    <br><br>Cálculo da Soma: O programa calcula e exibe a soma dos elementos do vetor.
+</div>
+
+
+
+
+
+    <div class="botao-proximo">
+        <a href="matrizesgo.html" class="proximo">PROXIMO</a></a>
+    </div>
+    <div class="botao-voltar">
+        <a href="primogo.html" class="voltar">VOLTAR</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>   

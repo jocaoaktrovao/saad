@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/header.css">
+    <link rel="stylesheet" href="src/style/modulo1.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>PYTHONLINO</title>
+    <header class="header">
+        <a href="#" class="logo">PYTHONLINO</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1.php">MÓDULO 1</a>
+            <a href="modulo2.html">MÓDULO 2</a>
+            <a href="modulo3.html">MÓDULO 3</a>
+            <a href="videos.html">VÍDEOS</a>
+            <a href="ordenacaogo.html">GO LANG</a>
+        </nav>
+    </header>
+    <style>
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #dee2e6;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: black;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Garante que a área de perfil fique alinhada à direita */
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .profile span {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #dee2e6;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #F0A830;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+    </style>
+
+    <script>
+    function executarBuscaLinear() {
+        const lista = [10, 20, 30, 40, 50];
+        const item = parseInt(prompt("Digite o item que deseja buscar na lista:"));
+
+        function busca_linear(lista, item) {
+            for (let i = 0; i < lista.length; i++) {
+                if (lista[i] === item) {
+                    return i;  // Retorna o índice do item encontrado
+                }
+            }
+            return -1;  // Retorna -1 se o item não for encontrado
+        }
+
+        const resultado = busca_linear(lista, item);
+        const saida = resultado !== -1 
+            ? `Item encontrado no índice: ${resultado}` 
+            : "Item não encontrado na lista.";
+
+        document.getElementById("saidaCodigoBusca").textContent = saida;
+    }
+    </script>
+
+</head>
+<body>
+    <h1>
+        <br>ALGORITMOS DE ORDENAÇÃO
+    </h1>
+    <h2>1. BUBBLE SORT</h2>
+    <div class="textooo">
+        O Bubble Sort é um dos algoritmos de ordenação mais simples. Ele percorre a lista várias vezes, comparando elementos adjacentes e trocando-os se estiverem na ordem errada. Isso faz com que os maiores elementos "flutuem" para o final da lista, como bolhas. O processo é repetido até que a lista esteja ordenada. Embora fácil de entender, o Bubble Sort é ineficiente para listas grandes devido ao seu tempo de execução quadrático.</div>
+
+        <h1>Exemplo de Código</h1>
+        <textarea class="code-box" readonly>
+            def bubble_sort(arr):
+                n = len(arr)
+                for i in range(n):
+                    for j in range(0, n - i - 1):
+                        # Troca se o elemento atual for maior que o próximo
+                        if arr[j] > arr[j + 1]:
+                            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            
+            # Exemplo de uso
+            vetor = [64, 34, 25, 12, 22, 11, 90]
+            bubble_sort(vetor)
+            print("Vetor ordenado é:", vetor)
+                </textarea>
+                <br>
+                <button class="btn-executar" onclick="executarBubbleSort()">Executar Código</button>
+                <div class="output" id="saidaCodigoBubbleSort">Saída do código aparecerá aqui...</div>
+            
+                <script>
+                    function bubbleSort(arr) {
+                        let n = arr.length;
+                        for (let i = 0; i < n; i++) {
+                            for (let j = 0; j < n - i - 1; j++) {
+                                // Troca se o elemento atual for maior que o próximo
+                                if (arr[j] > arr[j + 1]) {
+                                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                                }
+                            }
+                        }
+                    }
+            
+                    function executarBubbleSort() {
+                        let vetor = [64, 34, 25, 12, 22, 11, 90];
+                        bubbleSort(vetor);
+                        document.getElementById("saidaCodigoBubbleSort").textContent = `Vetor ordenado é: ${vetor.join(', ')}`;
+                    }
+                </script>
+    <div class="botao-proximo">
+        <a href="selection.html" class="proximo">PROXIMO</a></a>
+    </div>    
+    <div class="botao-voltar">
+        <a href="buscaexpo.html" class="voltar">VOLTAR</a>
+    </div>        
+    <footer>
+        <p>&copy; 2024 Pythonlino. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

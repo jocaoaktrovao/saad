@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/header.css">
+    <link rel="stylesheet" href="src/style/modulo1.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>PYTHONLINO</title>
+    <header class="header">
+        <a href="#" class="logo">PYTHONLINO</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1.php">MÓDULO 1</a>
+            <a href="modulo2.html">MÓDULO 2</a>
+            <a href="modulo3.html">MÓDULO 3</a>
+            <a href="videos.html">VÍDEOS</a>
+            <a href="buscaexpogo.html">GO LANG</a>
+        </nav>
+    </header>
+    <style>
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #dee2e6;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: black;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Garante que a área de perfil fique alinhada à direita */
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .profile span {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #dee2e6;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #F0A830;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+    </style>
+
+<script>
+    function buscaBinaria(lista, item) {
+        let baixo = 0;
+        let alto = lista.length - 1;
+
+        while (baixo <= alto) {
+            let meio = Math.floor((baixo + alto) / 2);
+            if (lista[meio] === item) {
+                return meio;
+            } else if (lista[meio] < item) {
+                baixo = meio + 1;
+            } else {
+                alto = meio - 1;
+            }
+        }
+        return -1;
+    }
+
+    function buscaExponencial(lista, item) {
+        if (lista[0] === item) {
+            return 0;
+        }
+
+        let n = lista.length;
+        let i = 1;
+        while (i < n && lista[i] <= item) {
+            i = i * 2;
+        }
+
+        return buscaBinaria(lista.slice(0, Math.min(i, n)), item);
+    }
+
+    function executarBuscaExponencial() {
+        const lista = [1, 2, 4, 8, 16, 32, 64, 128];
+        const item = parseInt(prompt("Digite o item que deseja buscar na lista:"));
+
+        const resultado = buscaExponencial(lista, item);
+        const saida = resultado !== -1 
+            ? `Item encontrado no índice: ${resultado}` 
+            : "Item não encontrado na lista.";
+
+        document.getElementById("saidaCodigoBusca").textContent = saida;
+    }
+</script>
+
+</head>
+<body>
+    <h1>
+        <br>ALGORITMOS DE BUSCA
+    </h1>
+    <h2>4. BUSCA EXPONENCIAL</h2>
+    <div class="textooo">
+        A Busca Exponencial é usada para encontrar um intervalo dentro de uma lista ordenada onde um item pode estar, antes de aplicar a Busca Binária dentro desse intervalo. O algoritmo começa verificando o primeiro elemento, depois o segundo, depois o quarto, o oitavo, e assim por diante, dobrando o índice a cada vez, até encontrar um intervalo que contenha o item desejado ou até exceder o tamanho da lista. Após determinar o intervalo, aplica-se a Busca Binária. Esse método é útil para listas muito grandes.
+    </div>
+    <h1>Exemplo de Código</h1>
+    <textarea class="code-box" readonly>
+        def busca_binaria(lista, item):
+            baixo = 0
+            alto = len(lista) - 1
+        
+            while baixo &lt;= alto:
+                meio = (baixo + alto) // 2
+                if lista[meio] == item:
+                    return meio
+                elif lista[meio] &lt; item:
+                    baixo = meio + 1
+                else:
+                    alto = meio - 1
+            return -1
+        
+        def busca_exponencial(lista, item):
+            if lista[0] == item:
+                return 0
+        
+            n = len(lista)
+            i = 1
+            while i &lt; n and lista[i] &lt;= item:
+                i = i * 2
+        
+            return busca_binaria(lista[:min(i, n)], item)
+        
+        # Exemplo de uso
+        lista = [1, 2, 4, 8, 16, 32, 64, 128]
+        item = 32
+        resultado = busca_exponencial(lista, item)
+        
+        if resultado != -1:
+            print(f"Item encontrado no índice: {resultado}")
+        else:
+            print("Item não encontrado na lista.")
+            </textarea>
+            <br>
+            <button class="btn-executar" onclick="executarBuscaExponencial()">Executar Código</button>
+            <div class="output" id="saidaCodigoBusca">Saída do código aparecerá aqui...</div>
+            <div class="juncao">
+                <div class="botao-proximo">
+                    <a href="ordenacao.html" class="proximo">CONCLUIR</a></a>
+                </div>
+                <div class="botao-voltar">
+                    <a href="buscainter.html" class="voltar">VOLTAR</a>
+                </div>
+            </div>       
+    <footer>
+        <p>&copy; 2024 Pythonlino. Todos os direitos reservados.</p>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="arquivos.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script>
+        let arquivos = {}; // Simulação de armazenamento de arquivos
+    
+        function menu() {
+            return parseInt(prompt("Escolha uma das opções abaixo:\n1 - Criar e escrever em um arquivo\n2 - Ler um arquivo\n3 - Apagar um arquivo\n4 - Sair"));
+        }
+    
+        function criarArquivo() {
+            const nomeArquivo = prompt("Digite o nome do arquivo (com extensão):");
+            const conteudo = prompt("Digite o conteúdo que deseja escrever no arquivo:");
+            arquivos[nomeArquivo] = conteudo;
+            document.getElementById("saidaCodigoArquivo").textContent = `Arquivo '${nomeArquivo}' criado e escrito com sucesso.`;
+        }
+    
+        function lerArquivo() {
+            const nomeArquivo = prompt("Digite o nome do arquivo que deseja ler (com extensão):");
+            if (arquivos[nomeArquivo]) {
+                document.getElementById("saidaCodigoArquivo").textContent = `Conteúdo do arquivo '${nomeArquivo}':\n${arquivos[nomeArquivo]}`;
+            } else {
+                document.getElementById("saidaCodigoArquivo").textContent = "Arquivo não encontrado.";
+            }
+        }
+    
+        function apagarArquivo() {
+            const nomeArquivo = prompt("Digite o nome do arquivo que deseja apagar (com extensão):");
+            if (arquivos[nomeArquivo]) {
+                delete arquivos[nomeArquivo];
+                document.getElementById("saidaCodigoArquivo").textContent = `Arquivo '${nomeArquivo}' apagado com sucesso.`;
+            } else {
+                document.getElementById("saidaCodigoArquivo").textContent = "Arquivo não encontrado.";
+            }
+        }
+    
+        function executarManipulacaoArquivo() {
+            let opcao;
+            do {
+                opcao = menu();
+                switch (opcao) {
+                    case 1:
+                        criarArquivo();
+                        break;
+                    case 2:
+                        lerArquivo();
+                        break;
+                    case 3:
+                        apagarArquivo();
+                        break;
+                    case 4:
+                        document.getElementById("saidaCodigoArquivo").textContent = "Encerrando o programa.";
+                        break;
+                    default:
+                        document.getElementById("saidaCodigoArquivo").textContent = "Opção inválida, tente novamente.";
+                }
+            } while (opcao !== 4);
+        }
+    </script>
+    
+    </head>
+    <body>
+        <h1><br>ARQUIVOS</h1>
+<h2>MANIPULAÇÃO DE ARQUIVOS COM ESCOLHA DO USUÁRIO</h2>
+<h1>CÓDIGO:</h1>
+<textarea class="code-box" readonly>
+    package main
+
+    import (
+        "bufio"
+        "fmt"
+        "io/ioutil"
+        "os"
+    )
+
+    func criarArquivo() {
+        var nomeArquivo, conteudo string
+        fmt.Print("Digite o nome do arquivo: ")
+        fmt.Scanln(&nomeArquivo)
+
+        fmt.Print("Digite o conteúdo que deseja escrever no arquivo: ")
+        scanner := bufio.NewScanner(os.Stdin)
+        if scanner.Scan() {
+            conteudo = scanner.Text()
+        }
+
+        err := ioutil.WriteFile(nomeArquivo, []byte(conteudo), 0644)
+        if err != nil {
+            fmt.Println("Erro ao criar o arquivo:", err)
+            return
+        }
+        fmt.Println("Arquivo criado com sucesso!")
+    }
+
+    func lerArquivo() {
+        var nomeArquivo string
+        fmt.Print("Digite o nome do arquivo para ler: ")
+        fmt.Scanln(&nomeArquivo)
+
+        conteudo, err := ioutil.ReadFile(nomeArquivo)
+        if err != nil {
+            fmt.Println("Erro ao ler o arquivo:", err)
+            return
+        }
+        fmt.Println("Conteúdo do arquivo:")
+        fmt.Println(string(conteudo))
+    }
+
+    func apagarArquivo() {
+        var nomeArquivo string
+        fmt.Print("Digite o nome do arquivo para apagar: ")
+        fmt.Scanln(&nomeArquivo)
+
+        err := os.Remove(nomeArquivo)
+        if err != nil {
+            fmt.Println("Erro ao apagar o arquivo:", err)
+            return
+        }
+        fmt.Println("Arquivo apagado com sucesso!")
+    }
+
+    func main() {
+        for {
+            fmt.Println("\nMENU")
+            fmt.Println("1. Criar arquivo")
+            fmt.Println("2. Ler arquivo")
+            fmt.Println("3. Apagar arquivo")
+            fmt.Println("4. Sair")
+            fmt.Print("Escolha uma opção: ")
+
+            var opcao int
+            fmt.Scanln(&opcao)
+
+            switch opcao {
+            case 1:
+                criarArquivo()
+            case 2:
+                lerArquivo()
+            case 3:
+                apagarArquivo()
+            case 4:
+                fmt.Println("Saindo do programa...")
+                return
+            default:
+                fmt.Println("Opção inválida. Tente novamente.")
+            }
+        }
+    }
+</textarea>
+<br>
+<button class="btn-executar" onclick="executarManipulacaoArquivos()">Executar Código</button>
+<div class="output" id="saidaCodigoArquivos">Saída do código aparecerá aqui...</div>
+
+<h1>EXPLICAÇÃO</h1>
+<div class="textooo">
+    Menu Interativo:
+    O menu oferece quatro opções para o usuário: criar, ler, apagar um arquivo, ou sair do programa.
+
+    <br><br>Função criarArquivo():
+    <br><br>Objetivo: Cria um arquivo e escreve conteúdo fornecido pelo usuário.
+    <br><br>Processo:
+    O usuário fornece o nome do arquivo e o conteúdo que deseja escrever. O arquivo é criado (ou sobrescrito se já existir) e o conteúdo é gravado.
+
+    <br><br>Função lerArquivo():
+    <br><br>Objetivo: Lê e exibe o conteúdo de um arquivo.
+    <br><br>Processo:
+    O usuário fornece o nome do arquivo a ser lido. O programa tenta abrir o arquivo e ler seu conteúdo. Se o arquivo não existir, uma mensagem de erro é exibida.
+
+    <br><br>Função apagarArquivo():
+    <br><br>Objetivo: Apaga um arquivo.
+    <br><br>Processo:
+    O usuário fornece o nome do arquivo a ser apagado. O programa verifica se o arquivo existe e o apaga, se encontrado.
+
+    <br><br>Loop Principal:
+    <br>O loop principal continua a exibir o menu e processar a escolha do usuário até que ele escolha a opção de sair (opcao == 4).
+</div>
+        <div class="botao-proximo">
+            <a href="fibonaccigo.html" class="proximo">PROXIMO</a></a>
+        </div>
+        <div class="botao-voltar">
+            <a href="matrizesgo.html" class="voltar">VOLTAR</a>
+        </div>
+        <footer>
+            <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+        </footer>
+    </body>
+    </html>

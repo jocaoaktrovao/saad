@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/header.css">
+    <link rel="stylesheet" href="src/style/modulo1.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>PYTHONLINO</title>
+    <header class="header">
+        <a href="#" class="logo">PYTHONLINO</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1.php">MÓDULO 1</a>
+            <a href="modulo2.html">MÓDULO 2</a>
+            <a href="modulo3.html">MÓDULO 3</a>
+            <a href="videos.html">VÍDEOS</a>
+            <a href="matrizesgo.html">GO LANG</a>
+        </nav>
+    </header>
+    <style>
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #dee2e6;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: black;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Garante que a área de perfil fique alinhada à direita */
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .profile span {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #dee2e6;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #F0A830;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+    </style>
+
+ <script>
+        function criarMatriz(linhas, colunas) {
+            let matriz = [];
+            for (let i = 0; i < linhas; i++) {
+                let linha = [];
+                for (let j = 0; j < colunas; j++) {
+                    const valor = parseInt(prompt(`Digite o valor para a posição [${i + 1}][${j + 1}]:`));
+                    if (isNaN(valor)) {
+                        document.getElementById("saidaCodigoMatriz").textContent = "Valor inválido inserido. Tente novamente.";
+                        return null;
+                    }
+                    linha.push(valor);
+                }
+                matriz.push(linha);
+            }
+            return matriz;
+        }
+
+        function executarMultiplicacaoMatrizes() {
+            const linhasA = parseInt(prompt("Digite o número de linhas da Matriz A:"));
+            const colunasA = parseInt(prompt("Digite o número de colunas da Matriz A:"));
+            const colunasB = parseInt(prompt("Digite o número de colunas da Matriz B:"));
+            
+            if (isNaN(linhasA) || isNaN(colunasA) || isNaN(colunasB)) {
+                document.getElementById("saidaCodigoMatriz").textContent = "Por favor, insira valores válidos para as dimensões.";
+                return;
+            }
+
+            const matrizA = criarMatriz(linhasA, colunasA);
+            if (!matrizA) return;
+            const matrizB = criarMatriz(colunasA, colunasB);  // Para multiplicação, colunas de A = linhas de B
+            if (!matrizB) return;
+
+            let resultado = [];
+            for (let i = 0; i < linhasA; i++) {
+                resultado[i] = [];
+                for (let j = 0; j < colunasB; j++) {
+                    resultado[i][j] = 0;
+                    for (let k = 0; k < colunasA; k++) {
+                        resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                    }
+                }
+            }
+
+            let matrizTexto = "Matriz A:\n";
+            matrizA.forEach(linha => matrizTexto += linha.join(" ") + "\n");
+            matrizTexto += "\nMatriz B:\n";
+            matrizB.forEach(linha => matrizTexto += linha.join(" ") + "\n");
+            matrizTexto += "\nResultado da multiplicação:\n";
+            resultado.forEach(linha => matrizTexto += linha.join(" ") + "\n");
+
+            document.getElementById("saidaCodigoMatriz").textContent = matrizTexto;
+        }
+    </script>
+
+</head>
+<body>
+    <h1><br>MATRIZES</h1>
+    <h2>MULTIPLICAÇÃO DE MATRIZES COM EXIBIÇÃO DAS MATRIZES GERADAS</h2>
+    <h1>Código</h1>
+    <textarea class="code-box" readonly>
+        # Função para criar uma matriz solicitando os valores do usuário
+        def criar_matriz(linhas, colunas):
+            matriz = []
+            for i in range(linhas):
+                linha = []
+                for j in range(colunas):
+                    valor = int(input(f"Digite o valor para a posição [{i+1}][{j+1}]: "))
+                    linha.append(valor)
+                matriz.append(linha)
+            return matriz
+
+        # Solicita ao usuário o tamanho das matrizes
+        linhas_a = int(input("Digite o número de linhas da Matriz A: "))
+        colunas_a = int(input("Digite o número de colunas da Matriz A: "))
+        linhas_b = colunas_a  # Para multiplicação, colunas de A = linhas de B
+        colunas_b = int(input("Digite o número de colunas da Matriz B: "))
+
+        # Cria as matrizes A e B
+        matriz_a = criar_matriz(linhas_a, colunas_a)
+        matriz_b = criar_matriz(linhas_b, colunas_b)
+
+        # Inicializa a matriz de resultado
+        resultado = [[0 for _ in range(colunas_b)] for _ in range(linhas_a)]
+
+        # Multiplica as matrizes
+        for i in range(linhas_a):
+            for j in range(colunas_b):
+                for k in range(colunas_a):
+                    resultado[i][j] += matriz_a[i][k] * matriz_b[k][j]
+
+        # Exibe a matriz resultante
+        for r in resultado:
+            print(r)
+    </textarea>
+    <br>
+    <button class="btn-executar" onclick="executarMultiplicacaoMatrizes()">Executar Código</button>
+    <div class="output" id="saidaCodigoMatriz">Saída do código aparecerá aqui...</div>
+    <h1>EXPLICAÇÃO</h1>
+    <div class="textooo">
+   Função criar_matriz(linhas, colunas): Cria uma matriz preenchida com valores fornecidos pelo usuário.
+        
+    <br>Definição das Dimensões: O usuário define o número de linhas e colunas das matrizes A e B.
+    
+    <br>Criação e Exibição das Matrizes: As matrizes A e B são criadas e exibidas.
+    
+    <br>Multiplicação e Exibição do Resultado: As matrizes são multiplicadas, e o resultado é exibido.
+    </div>
+    <div class="botao-proximo">
+        <a href="arquivos.html" class="proximo">PROXIMO</a></a>
+    </div>
+    <div class="botao-voltar">
+        <a href="vetores.html" class="voltar">VOLTAR</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Pythonlino. Todos os direitos reservados.</p>
+        
+    </footer>
+   
+</body>
+</html>

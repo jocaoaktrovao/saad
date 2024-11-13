@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/header.css">
+    <link rel="stylesheet" href="src/style/modulo1.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>PYTHONLINO</title>
+    <header class="header">
+        <a href="#" class="logo">PYTHONLINO</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1.php">MÓDULO 1</a>
+            <a href="modulo2.html">MÓDULO 2</a>
+            <a href="modulo3.html">MÓDULO 3</a>
+            <a href="videos.html">VÍDEOS</a>
+            <a href="modulo2go.html">GO LANG</a>
+        </nav>
+    </header>
+    <style>
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* Cabeçalho */
+        .header {
+            background-color: #dee2e6;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: black;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #dee2e6;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: black;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #F0A830;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+    </style>
+
+    <script>
+        function executarCodigoFatorial() {
+            const inputN = prompt("Digite um número para calcular o fatorial:");
+
+            // Simulação da função fatorial
+            function fatorial(n) {
+                if (n === 0 || n === 1) {
+                    return 1;
+                } else {
+                    return n * fatorial(n - 1);
+                }
+            }
+
+            const n = parseInt(inputN);
+            if (isNaN(n)) {
+                document.getElementById("saidaCodigoFatorial").textContent = "Por favor, insira um número válido.";
+            } else {
+                const resultado = fatorial(n);
+                document.getElementById("saidaCodigoFatorial").textContent = `O fatorial de ${n} é: ${resultado}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1><br><br>MÓDULO 2!!</h1>
+    <div class="textooo">
+        Neste módulo, vamos começar a aplicar os conceitos que você aprendeu no Módulo 1. Aqui, você irá construir a base prática da programação, resolvendo problemas clássicos como calcular o fatorial de um número ou verificar se um número é primo. Além disso, vamos explorar estruturas de dados essenciais, como vetores e matrizes, que são fundamentais para armazenar e manipular conjuntos de dados. Por fim, você aprenderá a trabalhar com arquivos, uma habilidade crucial para qualquer programador, pois a manipulação de dados externos permite criar programas mais complexos e úteis. Bons estudos!!
+    </div>
+
+    <h1><br>FATORIAL</h1>
+    <h2>FATORIAL COM ESCOLHA DO USUÁRIO</h2>
+    <h1>código</h1>
+    <textarea class="code-box" readonly>
+        def fatorial(n):
+            if n == 0 or n == 1:  # Correção: use 'or' no lugar de 'ou'
+                return 1
+            else:
+                return n * fatorial(n-1)
+
+        # Solicita ao usuário um número para calcular o fatorial
+        n = int(input("Digite um número para calcular o fatorial: "))
+
+        # Calcula e exibe o resultado
+        resultado = fatorial(n)
+        print(f"O fatorial de {n} é {resultado}")
+    </textarea>
+    <br>
+    <button class="btn-executar" onclick="executarCodigoFatorial()">Executar Código</button>
+    <div class="output" id="saidaCodigoFatorial">Saída do código aparecerá aqui...</div>
+
+    <div class="textooo">
+        <h1>EXPLICAÇÃO</h1>
+        <br>Função fatorial(n):
+        <br>Objetivo: Calcular o fatorial de um número n usando recursão.
+        <br>Processo:
+        Se n for 0 ou 1, o fatorial é 1 (condição base). Caso contrário, a função se chama recursivamente com n-1 até atingir a condição base. A multiplicação dos valores resulta no fatorial de n.
+        <br>Entrada do Usuário:
+        O usuário insere um número para o qual deseja calcular o fatorial.
+        <br>Cálculo e Exibição do Resultado:
+        O programa calcula o fatorial usando a função fatorial(n) e exibe o resultado.
+    </div>
+
+    <div class="botao-proximo">
+        <!-- Corrigido o fechamento da tag <a> -->
+        <a href="primo.html" class="proximo">PRÓXIMO</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Pythonlino. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

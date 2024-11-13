@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/header.css">
+    <link rel="stylesheet" href="src/style/modulo1.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>PYTHONLINO</title>
+    <header class="header">
+        <a href="#" class="logo">PYTHONLINO</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1.php">MÓDULO 1</a>
+            <a href="modulo2.html">MÓDULO 2</a>
+            <a href="modulo3.html">MÓDULO 3</a>
+            <a href="videos.html">VÍDEOS</a>
+            <a href="desvantagensgo.html">GO LANG</a>
+        </nav>
+    </header>
+    <style>
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #dee2e6;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: black;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Garante que a área de perfil fique alinhada à direita */
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .profile span {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #dee2e6;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+<h1>
+    <br>DESVANTAGENS
+</h1>
+<h2>DESEMPENHO LENTO</h2>
+<div class="textooo">
+    Python é uma linguagem interpretada, o que significa que, em comparação com linguagens compiladas como C ou C++, ela tende a ser mais lenta na execução de código. Isso pode ser um problema em aplicações que exigem alta performance, como jogos de alta complexidade ou sistemas em tempo real.<br><br>A gestão automática de memória através de garbage collection pode introduzir overhead adicional, impactando a eficiência do código em cenários que demandam processamento intensivo.
+</div>
+<h2>USO ELEVADO DE MEMÓRIA</h2>
+<div class="textooo">
+    Python costuma utilizar mais memória do que linguagens como C++ ou Java, especialmente devido à sua gestão automática de tipos e estrutura de dados de alto nível, como listas e dicionários. Esse uso elevado de memória pode ser problemático em sistemas com recursos limitados.<br><br>O gerenciamento automático de memória, enquanto útil, pode levar a um consumo desnecessário de recursos se não for cuidadosamente otimizado.
+</div>
+<h2>GLOBAL INTERPRETER LOCK (GIL)</h2>
+<div class="textooo">
+    O GIL é um mecanismo usado no interpretador CPython (a implementação padrão de Python) que impede a execução de múltiplas threads Python ao mesmo tempo em uma única thread do sistema operacional. Isso limita a eficácia da programação multithread em Python, especialmente em sistemas multiprocessadores. <br><br>Como resultado, Python pode não ser a melhor escolha para aplicações que requerem paralelismo intensivo, como grandes simulações científicas ou processamento de vídeo em tempo real.
+</div>
+<h2>NÃO IDEAL PARA MOBILE E DESENVOLVIMENTO DE JOGOS</h2>
+<div class="textooo">
+    Embora Python possa ser usado para criar aplicativos móveis, não é a escolha mais comum ou eficiente. Linguagens como Swift, Kotlin, ou mesmo Java são geralmente preferidas para desenvolvimento móvel, devido ao suporte nativo e melhor desempenho.<br><Br>Para desenvolvimento de jogos, Python não é amplamente adotado devido às suas limitações de desempenho. Engines de jogos como Unity (C#) e Unreal Engine (C++) oferecem ferramentas e suporte mais robustos para esse tipo de desenvolvimento.
+</div>
+<div class="botao-proximo">
+    <a href="aplicações.html" class="proximo">PROXIMO</a></a>
+</div>
+<div class="botao-voltar">
+    <a href="vantagens.html" class="voltar">VOLTAR</a>
+</div>
+    <footer>
+        <p>&copy; 2024 Pythonlino. Todos os direitos reservados.</p>
+        
+    </footer>
+</body>
+</html>

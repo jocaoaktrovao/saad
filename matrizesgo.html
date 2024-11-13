@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="matrizes.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script>
+        function criarMatriz(linhas, colunas) {
+            let matriz = [];
+            for (let i = 0; i < linhas; i++) {
+                let linha = [];
+                for (let j = 0; j < colunas; j++) {
+                    const valor = parseInt(prompt(`Digite o valor para a posição [${i + 1}][${j + 1}]:`));
+                    if (isNaN(valor)) {
+                        document.getElementById("saidaCodigoMatriz").textContent = "Valor inválido inserido. Tente novamente.";
+                        return null;
+                    }
+                    linha.push(valor);
+                }
+                matriz.push(linha);
+            }
+            return matriz;
+        }
+
+        function executarMultiplicacaoMatrizes() {
+            const linhasA = parseInt(prompt("Digite o número de linhas da Matriz A:"));
+            const colunasA = parseInt(prompt("Digite o número de colunas da Matriz A:"));
+            const colunasB = parseInt(prompt("Digite o número de colunas da Matriz B:"));
+            
+            if (isNaN(linhasA) || isNaN(colunasA) || isNaN(colunasB)) {
+                document.getElementById("saidaCodigoMatriz").textContent = "Por favor, insira valores válidos para as dimensões.";
+                return;
+            }
+
+            const matrizA = criarMatriz(linhasA, colunasA);
+            if (!matrizA) return;
+            const matrizB = criarMatriz(colunasA, colunasB);  // Para multiplicação, colunas de A = linhas de B
+            if (!matrizB) return;
+
+            let resultado = [];
+            for (let i = 0; i < linhasA; i++) {
+                resultado[i] = [];
+                for (let j = 0; j < colunasB; j++) {
+                    resultado[i][j] = 0;
+                    for (let k = 0; k < colunasA; k++) {
+                        resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                    }
+                }
+            }
+
+            let matrizTexto = "Matriz A:\n";
+            matrizA.forEach(linha => matrizTexto += linha.join(" ") + "\n");
+            matrizTexto += "\nMatriz B:\n";
+            matrizB.forEach(linha => matrizTexto += linha.join(" ") + "\n");
+            matrizTexto += "\nResultado da multiplicação:\n";
+            resultado.forEach(linha => matrizTexto += linha.join(" ") + "\n");
+
+            document.getElementById("saidaCodigoMatriz").textContent = matrizTexto;
+        }
+    </script>
+
+</head>
+<body>
+    <h1><br>MATRIZES</h1>
+<h2>MULTIPLICAÇÃO DE MATRIZES COM EXIBIÇÃO DAS MATRIZES GERADAS</h2>
+<h1>Código:</h1>
+<textarea class="code-box" readonly>
+    package main
+
+    import "fmt"
+
+    // Função para criar uma matriz solicitando os valores do usuário
+    func criarMatriz(linhas, colunas int) [][]int {
+        matriz := make([][]int, linhas)
+        for i := range matriz {
+            matriz[i] = make([]int, colunas)
+            for j := range matriz[i] {
+                fmt.Printf("Digite o valor para a posição [%d][%d]: ", i+1, j+1)
+                fmt.Scan(&matriz[i][j])
+            }
+        }
+        return matriz
+    }
+
+    func main() {
+        // Solicita ao usuário o tamanho das matrizes
+        var linhasA, colunasA, colunasB int
+        fmt.Print("Digite o número de linhas da Matriz A: ")
+        fmt.Scan(&linhasA)
+        fmt.Print("Digite o número de colunas da Matriz A: ")
+        fmt.Scan(&colunasA)
+        fmt.Print("Digite o número de colunas da Matriz B: ")
+        fmt.Scan(&colunasB)
+
+        // Cria as matrizes A e B
+        matrizA := criarMatriz(linhasA, colunasA)
+        matrizB := criarMatriz(colunasA, colunasB) // colunas de A = linhas de B
+
+        // Inicializa a matriz de resultado
+        resultado := make([][]int, linhasA)
+        for i := range resultado {
+            resultado[i] = make([]int, colunasB)
+        }
+
+        // Multiplica as matrizes
+        for i := 0; i < linhasA; i++ {
+            for j := 0; j < colunasB; j++ {
+                for k := 0; k < colunasA; k++ {
+                    resultado[i][j] += matrizA[i][k] * matrizB[k][j]
+                }
+            }
+        }
+
+        // Exibe a matriz resultante
+        fmt.Println("Matriz resultante:")
+        for _, linha := range resultado {
+            fmt.Println(linha)
+        }
+    }
+</textarea>
+<br>
+<button class="btn-executar" onclick="executarMultiplicacaoMatrizes()">Executar Código</button>
+<div class="output" id="saidaCodigoMatriz">Saída do código aparecerá aqui...</div>
+
+<h1>EXPLICAÇÃO</h1>
+<div class="textooo">
+    Função criarMatriz(linhas, colunas): Cria uma matriz preenchida com valores fornecidos pelo usuário.
+
+    <br><br>Definição das Dimensões: O usuário define o número de linhas e colunas das matrizes A e B.
+
+    <br><br>Criação e Exibição das Matrizes: As matrizes A e B são criadas e exibidas.
+
+    <br><br>Multiplicação e Exibição do Resultado: As matrizes são multiplicadas, e o resultado é exibido.
+</div>
+    <div class="botao-proximo">
+        <a href="arquivosgo.html" class="proximo">PROXIMO</a></a>
+    </div>
+    <div class="botao-voltar">
+        <a href="vetoresgo.html" class="voltar">VOLTAR</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+    </footer>
+   
+</body>
+</html>

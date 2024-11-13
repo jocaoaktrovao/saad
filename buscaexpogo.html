@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style/headergo.css">
+    <link rel="stylesheet" href="src/style/golang.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <title>GOLANGAUM</title>
+    <header class="header">
+        <a href="#" class="logo">GOLANGAUM</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="modulo1go.php">MÓDULO 1</a>
+            <a href="modulo2go.html">MÓDULO 2</a>
+            <a href="modulo3go.html">MÓDULO 3</a>
+            <a href="videosgo.html">VÍDEOS</a>
+            <a href="buscaexpo.html">PYTHONLINO</a>
+        </nav>
+    </header>
+    <style>
+     
+        /* Cabeçalho */
+        .header {
+            position: relative;
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .code-box {
+            width: 80%;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000;
+            color: white;
+        }
+
+        .output {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .btn-executar {
+            display: block;
+            margin: 20px auto; 
+            padding: 15px 30px; 
+            background-color: #ffff;  
+            color: #6f1d1b;
+            font-size: 16px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-executar:hover {
+            transition: 0.4s;
+            background-color: #333;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script>
+        function buscaBinaria(lista, item) {
+            let baixo = 0;
+            let alto = lista.length - 1;
+    
+            while (baixo <= alto) {
+                let meio = Math.floor((baixo + alto) / 2);
+                if (lista[meio] === item) {
+                    return meio;
+                } else if (lista[meio] < item) {
+                    baixo = meio + 1;
+                } else {
+                    alto = meio - 1;
+                }
+            }
+            return -1;
+        }
+    
+        function buscaExponencial(lista, item) {
+            if (lista[0] === item) {
+                return 0;
+            }
+    
+            let n = lista.length;
+            let i = 1;
+            while (i < n && lista[i] <= item) {
+                i = i * 2;
+            }
+    
+            return buscaBinaria(lista.slice(0, Math.min(i, n)), item);
+        }
+    
+        function executarBuscaExponencial() {
+            const lista = [1, 2, 4, 8, 16, 32, 64, 128];
+            const item = parseInt(prompt("Digite o item que deseja buscar na lista:"));
+    
+            const resultado = buscaExponencial(lista, item);
+            const saida = resultado !== -1 
+                ? `Item encontrado no índice: ${resultado}` 
+                : "Item não encontrado na lista.";
+    
+            document.getElementById("saidaCodigoBusca").textContent = saida;
+        }
+    </script>
+    
+    </head>
+    <body>
+        <h1><br>ALGORITMOS DE BUSCA</h1>
+    <h2>4. BUSCA EXPONENCIAL</h2>
+    <div class="textooo">
+        A Busca Exponencial é usada para encontrar um intervalo dentro de uma lista ordenada onde um item pode estar, antes de aplicar a Busca Binária dentro desse intervalo. O algoritmo começa verificando o primeiro elemento, depois o segundo, depois o quarto, o oitavo, e assim por diante, dobrando o índice a cada vez, até encontrar um intervalo que contenha o item desejado ou até exceder o tamanho da lista. Após determinar o intervalo, aplica-se a Busca Binária. Esse método é útil para listas muito grandes.
+    </div>
+
+    <h1>EXEMPLO DE CÓDIGO</h1>
+    <textarea class="code-box" readonly>
+        package main
+
+        import "fmt"
+
+        func buscaBinaria(lista []int, item int) int {
+            baixo := 0
+            alto := len(lista) - 1
+
+            for baixo <= alto {
+                meio := (baixo + alto) / 2
+                if lista[meio] == item {
+                    return meio
+                } else if lista[meio] < item {
+                    baixo = meio + 1
+                } else {
+                    alto = meio - 1
+                }
+            }
+            return -1
+        }
+
+        func buscaExponencial(lista []int, item int) int {
+            if lista[0] == item {
+                return 0
+            }
+
+            n := len(lista)
+            i := 1
+            for i < n && lista[i] <= item {
+                i = i * 2
+            }
+
+            return buscaBinaria(lista[:min(i, n)], item)
+        }
+
+        func min(a, b int) int {
+            if a < b {
+                return a
+            }
+            return b
+        }
+
+        func main() {
+            lista := []int{1, 2, 4, 8, 16, 32, 64, 128}
+            item := 32
+            resultado := buscaExponencial(lista, item)
+
+            if resultado != -1 {
+                fmt.Printf("Item encontrado no índice: %d\n", resultado)
+            } else {
+                fmt.Println("Item não encontrado na lista.")
+            }
+        }
+    </textarea>
+    <br>
+    <button class="btn-executar" onclick="executarBuscaExponencial()">Executar Código</button>
+    <div class="output" id="saidaCodigoBusca">Saída do código aparecerá aqui...</div>
+
+    <div class="textooo">
+        <h1>Explicação</h1>
+        <p>Função <code>buscaBinaria(lista []int, item int) int</code>:</p>
+        <p>Objetivo: Realizar uma busca binária em uma lista ordenada. Retorna o índice do item, se encontrado; caso contrário, retorna -1.</p>
+
+        <p>Função <code>buscaExponencial(lista []int, item int) int</code>:</p>
+        <p>Objetivo: Aplicar a busca exponencial para encontrar um intervalo onde o item pode estar e depois aplicar a busca binária dentro desse intervalo.</p>
+
+        <p>Processo:</p>
+        <ul>
+            <li>Inicia verificando o primeiro item da lista.</li>
+            <li>Dobrar o índice progressivamente até encontrar um intervalo que contenha o item ou exceder o tamanho da lista.</li>
+            <li>Depois, a Busca Binária é aplicada dentro desse intervalo.</li>
+        </ul>
+
+        <p>Exemplo:</p>
+        <ul>
+            <li>O exemplo usa a lista <code>[1, 2, 4, 8, 16, 32, 64, 128]</code> e busca o número <code>32</code>.</li>
+            <li>A busca exponencial começa verificando os índices <code>1, 2, 4, 8, 16, 32</code>, até encontrar o intervalo correto.</li>
+            <li>Após identificar o intervalo, a busca binária é executada para encontrar o item dentro desse intervalo.</li>
+        </ul>
+
+        <p>Resultado:</p>
+        <p>O índice do item é exibido. Caso o item não seja encontrado, a mensagem "Item não encontrado na lista." é exibida.</p>
+    </div>
+
+
+
+
+
+        <div class="juncao">
+            <div class="botao-proximo">
+                <a href="ordenacaogo.html" class="proximo">CONCLUIR</a></a>
+            </div>
+            <div class="botao-voltar">
+                <a href="buscaintergo.html" class="voltar">VOLTAR</a>
+            </div>
+        </div>       
+<footer>
+    <p>&copy; 2024 Golangaum. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>   
